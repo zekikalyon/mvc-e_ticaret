@@ -1,0 +1,86 @@
+﻿@model IEnumerable<MvcWebUI.Entity.Urun>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container pb-5">
+    
+
+    <p>
+        @Html.ActionLink("Yeni Ürün", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fotograf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kategori.Ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anasayfa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Onaylimi)
+            </th>
+            <th style="width:137px;"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/uruntasarım/img/@item.Fotograf" width="50" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kategori.Ad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ad)
+                </td>
+
+                <td>
+                    @if (item.Anasayfa)
+                    {
+                        <label class="badge badge-success">
+                            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                            Evet
+                        </label>
+                    }
+                    else
+                    {
+                        <label class="badge badge-danger">
+                            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                            Hayır
+                        </label>
+                    }
+                </td>
+                <td>
+                    @if (item.Onaylimi)
+                    {
+                        <label class="badge badge-success">
+                            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                            Evet
+                        </label>
+                    }
+                    else
+                    {
+                        <label class="badge badge-danger">
+                            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                            Hayır
+                        </label>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

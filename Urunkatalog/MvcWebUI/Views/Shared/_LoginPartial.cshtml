@@ -1,0 +1,41 @@
+﻿@*<form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+</form>*@
+
+<ul class="navbar-nav my-2 my-lg-0 ">
+
+    @if (Request.IsAuthenticated) // Kullanıcı login oldu mu kontrolü
+    {
+        //Kullanıcı adı ve logout linklerini çıkar
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account">@User.Identity.Name</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Logout">Logout</a>
+        </li>
+    }
+    else
+    {
+        //Login ve register linklerini çıkar
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Login">Giriş</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/Account/Register">Kayıt Ol</a>
+        </li>
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>

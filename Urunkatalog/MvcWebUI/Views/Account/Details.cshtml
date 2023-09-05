@@ -1,0 +1,98 @@
+﻿@model MvcWebUI.Models.OrderDetailsModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Sipariş Detay Bilgileri</h2>
+            <hr />
+            <dl class="row">
+
+                <dt class="col-sm-3">Order State</dt>
+                <dd class="col-sm-9">
+                    @if (Model.OrderState == MvcWebUI.Entity.EnumOrderState.Bekleniyor)
+                    {
+                        <span class="badge-danger">Onay Bekliyor</span>
+                    }
+                    else if (Model.OrderState == MvcWebUI.Entity.EnumOrderState.Tamamlandı)
+                    {
+                        <span class="badge-success">Sipariş Tamamlandı.</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">Order Id</dt>
+                <dd class="col-sm-9">@Model.OrderId</dd>
+
+                <dt class="col-sm-3">Order Number</dt>
+                <dd class="col-sm-9">@Model.SiparisNo</dd>
+
+                <dt class="col-sm-3">Total</dt>
+                <dd class="col-sm-9">
+                    <i class="fa fa-try" aria-hidden="true"></i>
+                    @Model.OdemeTutarı
+                </dd>
+
+                <dt class="col-sm-3">Order Date</dt>
+                <dd class="col-sm-9">@Model.SiparisTarihi</dd>
+
+
+                <dt class="col-sm-3">Adres</dt>
+                <dd class="col-sm-9">
+                    @Model.AdresBasligi
+                    <hr />
+                    @Model.Adres
+                    <br />
+                    @Model.Sehir - @Model.İlce - @Model.Mahalle
+                    <br />
+                    @Model.PostaKodu
+                </dd>
+
+                <dt class="col-sm-3">Products</dt>
+                <dd class="col-sm-9">
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th>Fotoğraf</th>
+                                <th style="width: 45%;">Ürün Adı</th>
+                                <th>Adet</th>
+                                <th>Fiyat</th>
+                                <th style="width: 10%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.Orderlines)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/uruntasarım/img/@item.Fotograf" width="70" />
+                                    </td>
+                                    <td>
+                                        @item.UrunAdi
+                                    </td>
+                                    <td>
+                                        @item.Adet
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-try" aria-hidden="true"></i>
+                                        @item.Fiyat
+                                    </td>
+                                    <td>
+                                        <a href="/Home/Details/@item.UrunId" class="btn btn-primary btn-sm" target="_blank">
+                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                            Ürün Detayı
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+</div>

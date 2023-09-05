@@ -1,0 +1,105 @@
+﻿@using MvcWebUI.Entity
+@model Urun
+@{
+    ViewBag.Title = "Details";
+}
+<div id="product-details" class="container pd-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/uruntasarım/img/@Model.Fotograf" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Ad</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 pb-3">
+                    @if (Model.Onaylimi)
+                    {
+                        <span class="badge badge-primary">Stokta</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">Stokta bulunmuyor</span>
+                    }
+
+                    <span class="product-number">#234122</span>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12 pb-3">
+                    <div id="description">
+                        @Model.Aciklama
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-1">
+                <div class="cold-md-4 pl-3 pb-3">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                    <span class="badge badge-success">55</span>
+                </div>
+                <div id="write-review" class="col-md-4">
+                    <a href="#">
+                        Yorum yap
+                    </a>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12 ">
+                    <h4 id="product-price">@Model.Fiyat TL</h4>
+
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12 ">
+
+                    @using (Html.BeginForm("AddToCart","Cart"))
+                    {
+                        @Html.HiddenFor(i=>i.Id)
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        Sepete Ekle
+                        </button >
+                     }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            <div class="bd-example bd-example-tabs">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-description-tab" data-toggle="pill" data-target="#pills-description" type="button" role="tab" aria-controls="pills-description" aria-selected="true">Açıklama</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-payment-tab" data-toggle="pill" data-target="#pills-payment" type="button" role="tab" aria-controls="pills-payment" aria-selected="false">Ödeme Seçenekleri</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-comment-tab" data-toggle="pill" data-target="#pills-comment" type="button" role="tab" aria-controls="pills-comment" aria-selected="false">Yorumlar</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+                        <p>Placeholder content for the tab panel. This one relates to the home tab. Takes you miles high, so high, 'cause she’s got that one international smile. There's a stranger in my bed, there's a pounding in my head. Oh, no. In another life I would make you stay. ‘Cause I, I’m capable of anything. Suiting up for my crowning battle. Used to steal your parents' liquor and climb to the roof. Tone, tan fit and ready, turn it up cause its gettin' heavy. Her love is like a drug. I guess that I forgot I had a choice.</p>
+                    </div>
+                    <div class="tab-pane fade" id="pills-payment" role="tabpanel" aria-labelledby="pills-payment-tab">
+                        <p>Placeholder content for the tab panel. This one relates to the profile tab. You got the finest architecture. Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+                    </div>
+                    <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
+                        <p>Placeholder content for the tab panel. This one relates to the contact tab. Her love is like a drug. All my girls vintage Chanel baby. Got a motel and built a fort out of sheets. 'Cause she's the muse and the artist. (This is how we do) So you wanna play with magic. So just be sure before you give it all to me. I'm walking, I'm walking on air (tonight). Skip the talk, heard it all, time to walk the walk. Catch her if you can. Stinging like a bee I earned my stripes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
